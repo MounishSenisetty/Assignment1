@@ -1,0 +1,33 @@
+{
+  "name": "assignment1-browser-automation",
+  "version": "1.0.0",
+  "description": "Application Letter with Browser Search Demo - Shows how to open browser and search for India using web automation",
+  "main": "search-india.js",
+  "scripts": {
+    "search": "node search-india.js",
+    "serve": "python3 -m http.server 8080",
+    "test": "npx playwright test test-search-india.js",
+    "test:headed": "npx playwright test test-search-india.js --headed",
+    "install-playwright": "npx playwright install chromium",
+    "demo": "echo 'Starting demo server...' && npm run serve"
+  },
+  "keywords": [
+    "html", 
+    "css", 
+    "javascript",
+    "playwright", 
+    "browser-automation", 
+    "search", 
+    "india",
+    "ui-design",
+    "application-letter"
+  ],
+  "author": "Mounish Senisetty",
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}
