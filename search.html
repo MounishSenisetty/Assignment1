@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Demo - India Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .search-container {
+            background: #ffffff;
+            padding: 30px;
+            max-width: 600px;
+            margin: 50px auto;
+            border-left: 5px solid blue;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .search-box {
+            width: 80%;
+            padding: 15px;
+            font-size: 18px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            margin: 20px 0;
+            outline: none;
+        }
+
+        .search-box:focus {
+            border-color: blue;
+        }
+
+        .search-button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .search-button:hover {
+            background-color: darkblue;
+        }
+
+        .search-results {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .result-item {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .result-title {
+            color: blue;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .result-description {
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .demo-note {
+            background-color: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-container">
+        <h2 style="color: blue; text-decoration: underline;">Browser Search Demo</h2>
+        <div class="demo-note">
+            <strong>Demo:</strong> This page simulates opening a browser and searching for "India" or any other term.
+        </div>
+        
+        <input type="text" class="search-box" id="searchInput" placeholder="Search for anything..." value="India">
+        <br>
+        <button class="search-button" onclick="performSearch()">Search</button>
+        <button class="search-button" onclick="searchIndia()" style="background-color: #28a745;">Search for India</button>
+        
+        <div class="search-results" id="searchResults"></div>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="index.html" style="color: blue; text-decoration: none; font-weight: bold;">← Back to Application Letter</a>
+    </div>
+
+    <script>
+        // Sample search data with information about India and other topics
+        const searchData = {
+            "india": [
+                {
+                    title: "India - Wikipedia",
+                    description: "India, officially the Republic of India, is a country in South Asia. It is the seventh-largest country by area, the second-most populous country, and the most populous democracy in the world."
+                },
+                {
+                    title: "Incredible India - Official Tourism Website",
+                    description: "Discover the beauty, culture, and heritage of India. Explore destinations, plan your trip, and experience the incredible diversity of India."
+                },
+                {
+                    title: "India News - Latest Headlines",
+                    description: "Stay updated with the latest news from India including politics, sports, entertainment, and more."
+                },
+                {
+                    title: "Economy of India",
+                    description: "India is the world's sixth-largest economy by nominal GDP and the third-largest by purchasing power parity (PPP)."
+                },
+                {
+                    title: "Culture of India",
+                    description: "India's rich cultural heritage is a fusion of various cultures, traditions, and religions that have evolved over thousands of years."
+                }
+            ],
+            "google": [
+                {
+                    title: "Google - Search Engine",
+                    description: "Google is a multinational technology company that specializes in Internet-related services and products."
+                }
+            ],
+            "programming": [
+                {
+                    title: "Programming Languages",
+                    description: "Learn about various programming languages like Java, Python, JavaScript, and more."
+                }
+            ],
+            "default": [
+                {
+                    title: "Search Results",
+                    description: "This is a demo search page. Try searching for 'India', 'Google', or 'Programming' for sample results."
+                }
+            ]
+        };
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            displayResults(query);
+        }
+
+        function searchIndia() {
+            document.getElementById('searchInput').value = 'India';
+            displayResults('india');
+        }
+
+        function displayResults(query) {
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (!query) {
+                resultsContainer.innerHTML = '<div class="demo-note">Please enter a search term.</div>';
+                return;
+            }
+
+            let results = searchData[query] || searchData['default'];
+            
+            // If searching for India specifically, use India results
+            if (query.includes('india')) {
+                results = searchData['india'];
+            }
+
+            let html = `<h3 style="color: blue;">Search Results for: "${query}"</h3>`;
+            
+            results.forEach((result, index) => {
+                html += `
+                    <div class="result-item">
+                        <div class="result-title">${result.title}</div>
+                        <div class="result-description">${result.description}</div>
+                    </div>
+                `;
+            });
+
+            resultsContainer.innerHTML = html;
+        }
+
+        // Automatically search for India when page loads
+        window.onload = function() {
+            searchIndia();
+        };
+
+        // Allow Enter key to search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
+</body>
+</html>

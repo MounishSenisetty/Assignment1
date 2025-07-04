@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Playwright
+test-results/
+playwright-report/
+/playwright/.cache/
+
+# Browser downloads
+/browsers/
+
+# Screenshots and outputs (keep sample ones in repo)
+*.png
+!*demo*.png
+!*sample*.png
+
+# Temporary files
+.tmp/
+temp/
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Package manager
+package-lock.json
+yarn.lock
